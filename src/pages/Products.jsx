@@ -1,6 +1,8 @@
 import React from "react";
 import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 const Data = [
   { id: 1, name: "Iphone" },
   { id: 2, name: "Watch" },
@@ -8,6 +10,10 @@ const Data = [
   { id: 4, name: "Clothes" },
 ];
 function Products() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const sortHandler = () => {
+    setSearchParams({ sortby: "قیمت", order: "ارزانترین" });
+  };
   return (
     <div>
       <Navbar />
@@ -19,6 +25,7 @@ function Products() {
           </li>
         ))}
       </ul>
+      <button onClick={sortHandler}>change query setting</button>
     </div>
   );
 }
